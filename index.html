@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MADERCREA: estantes y repisas de madera. Transformamos espacios, construimos ideas.">
+  <title>MADERCREA | Transformamos espacios, construimos ideas</title>
+
+  <style>
+    :root {
+      --cream: #f5f0e6;
+      --paper: #fffdf8;
+      --ink: #171512;
+      --wood: #8c6637;
+      --muted: #6e675d;
+      --line: #ded4c4;
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 36px));
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 253, 248, .96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-family: Georgia, serif;
+      font-weight: 900;
+      font-size: 1.45rem;
+      letter-spacing: .04em;
+    }
+
+    .brand span {
+      color: var(--wood);
+    }
+
+    .links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      font-size: .93rem;
+      font-weight: 700;
+    }
+
+    .links a:hover {
+      color: var(--wood);
+    }
+
+    .menu {
+      display: none;
+      background: transparent;
+      border: 0;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    .hero {
+      padding: 38px 0 50px;
+      background: var(--cream);
+    }
+
+    .hero-image {
+      width: 100%;
+      border: 1px solid #1c1a17;
+      box-shadow: 0 18px 40px #2b211312;
+    }
+
+    .intro {
+      text-align: center;
+      max-width: 760px;
+      margin: 36px auto 0;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: .76rem;
+      color: var(--wood);
+      font-weight: 800;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.15;
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(2.3rem, 5vw, 4.3rem);
+      margin: 12px 0;
+      letter-spacing: -.04em;
+    }
+
+    .intro p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin: 0 auto 22px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--ink);
+      color: white;
+      padding: 12px 22px;
+      border-radius: 3px;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      background: var(--wood);
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 76px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+
+    .section-head h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 8px 0 0;
+    }
+
+    .section-head p {
+      max-width: 470px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .catalog {
+      background: #fffdf8;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      border-radius: var(--radius);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 35px #2b211315;
+    }
+
+    .photo {
+      aspect-ratio: 4 / 4.7;
+      overflow: hidden;
+      background: var(--cream);
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s;
+    }
+
+    .card:hover .photo img {
+      transform: scale(1.035);
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card-body h3 {
+      font-family: Georgia, serif;
+      font-size: 1.3rem;
+      margin: 0 0 8px;
+    }
+
+    .card-body p {
+      color: var(--muted);
+      font-size: .94rem;
+      margin: 0 0 15px;
+    }
+
+    .card-link {
+      font-weight: 800;
+      color: var(--wood);
+    }
+
+    .about {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 46px;
+      align-items: center;
+    }
+
+    .about h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      margin: 12px 0 18px;
+    }
+
+    .about p {
+      color: #d3cabc;
+    }
+
+    .about .eyebrow {
+      color: #d4b17c;
+    }
+
+    .info-image {
+      width: 100%;
+      border: 1px solid #d4b17c;
+    }
+
+    .contact {
+      background: var(--cream);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .contact h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      margin: 10px 0;
+    }
+
+    .contact p {
+      color: var(--muted);
+    }
+
+    .details {
+      display: grid;
+      gap: 14px;
+      margin-top: 25px;
+    }
+
+    .detail {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 13px;
+    }
+
+    .detail b {
+      display: block;
+    }
+
+    .detail span {
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .contact-image {
+      width: 100%;
+      border: 1px solid var(--line);
+    }
+
+    footer {
+      background: #171512;
+      color: #f5f0e6;
+      padding: 25px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    footer p {
+      margin: 0;
+      color: #cfc5b6;
+      font-size: .88rem;
+    }
+
+    @media (max-width: 850px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-head p {
+        margin-top: 14px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 26px, 1180px);
+      }
+
+      .menu {
+        display: block;
+      }
+
+      .links {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 76px;
+        background: var(--paper);
+        padding: 20px;
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .links.open {
+        display: flex;
+      }
+
+      .hero {
+        padding-top: 20px;
+      }
+
+      section {
+        padding: 54px 0;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .photo {
+        aspect-ratio: 4 / 4.2;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="nav container" aria-label="Navegación principal">
+      <a class="brand" href="#inicio">
+        MADER<span>CREA</span>
+      </a>
+
+      <button class="menu" id="menu"
+        aria-label="Abrir menú"
+        aria-expanded="false">
+        ☰
+      </button>
+
+      <div class="links" id="links">
+        <a href="#inicio">Inicio</a>
+        <a href="#productos">Productos</a>
+        <a href="#proyecto">El proyecto</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- PRIMERA IMAGEN: LOGO Y ESLOGAN -->
+
+    <section class="hero" id="inicio">
+      <div class="container">
+
+        <img
+          class="hero-image"
+          src="imagenes/logo-frontal.png"
+          alt="Logo de MADERCREA con el eslogan Transformamos espacios, construimos ideas"
+        >
+
+        <div class="intro">
+          <div class="eyebrow">
+            Repisas y estantes de madera
+          </div>
+
+          <h1>
+            Transformamos espacios,<br>
+            construimos ideas.
+          </h1>
+
+          <p>
+            Diseñamos soluciones funcionales y atractivas
+            para organizar y aprovechar mejor tus espacios.
+          </p>
+
+          <a class="btn" href="#productos">
+            Explorar productos ↓
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CATÁLOGO DE PRODUCTOS -->
+
+    <section class="catalog" id="productos">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Catálogo MADERCREA</div>
+            <h2>Repisas y estantes</h2>
+          </div>
+
+          <p>
+            Conoce ideas de repisas suspendidas y estantes
+            decorativos. Las fotografías son referencias
+            de diseño; las medidas y disponibilidad deben confirmarse.
+          </p>
+        </div>
+
+        <div class="grid">
+
+          <article class="card">
+            <div class="photo">
+              <img
+                src="imagenes/producto-repisa-triangular.png"
+                alt="Repisa triangular suspendida con plantas"
+                loading="lazy"
+              >
+            </div>
+
+            <div class="card-body">
+              <h3>Repisa triangular</h3>
+              <p>
+                Un diseño decorativo para aprovechar
+                pequeños espacios en paredes.
+              </p>
+              <a class="card-link" href="#contacto">Consultar →</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="photo">
+              <img
+                src="imagenes/producto-repisa-cuerda.png"
+                alt="Repisa de madera suspendida con cuerdas"
+                loading="lazy"
+              >
+            </div>
+
+            <div class="card-body">
+              <h3>Repisa colgante de cuerda</h3>
+              <p>
+                Una repisa que combina madera y cuerda
+                para un estilo natural.
+              </p>
+              <a class="card-link" href="#contacto">Consultar →</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="photo">
+              <img
+                src="imagenes/producto-repisas-pared.png"
+                alt="Repisas de pared decoradas con plantas"
+                loading="lazy"
+              >
+            </div>
+
+            <div class="card-body">
+              <h3>Repisas decorativas</h3>
+              <p>
+                Para colocar plantas pequeñas, libros
+                y objetos decorativos.
+              </p>
+              <a class="card-link" href="#contacto">Consultar →</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="photo">
+              <img
+                src="imagenes/producto-estante-bano.png"
+                alt="Estante de madera con cuerdas"
+                loading="lazy"
+              >
+            </div>
+
+            <div class="card-body">
+              <h3>Estante de dos niveles</h3>
+              <p>
+                Una idea para organizar artículos livianos
+                en espacios interiores.
+              </p>
+              <a class="card-link" href="#contacto">Consultar →</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="photo">
+              <img
+                src="imagenes/producto-estantes-plantas.png"
+                alt="Estante colgante con varios niveles"
+                loading="lazy"
+              >
+            </div>
+
+            <div class="card-body">
+              <h3>Estante de varios niveles</h3>
+              <p>
+                Permite distribuir objetos en diferentes
+                alturas y aprovechar la pared.
+              </p>
+              <a class="card-link" href="#contacto">Consultar →</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="photo">
+              <img
+                src="imagenes/producto-estante-multiple.png"
+                alt="Estante vertical de madera con cuerda"
+                loading="lazy"
+              >
+            </div>
+
+            <div class="card-body">
+              <h3>Estante vertical</h3>
+              <p>
+                Una propuesta para organizar y exhibir
+                artículos decorativos.
+              </p>
+              <a class="card-link" href="#contacto">Consultar →</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECTO Y SEGUNDA IMAGEN INFORMATIVA -->
+
+    <section class="about" id="proyecto">
+      <div class="container about-grid">
+
+        <div>
+          <div class="eyebrow">Sobre MADERCREA</div>
+
+          <h2>
+            Ideas útiles para aprovechar cada espacio.
+          </h2>
+
+          <p>
+            MADERCREA es un proyecto de emprendimiento escolar
+            de grado 11.º F de la I.E.D. Germán Vargas Cantillo
+            Fe y Alegría, en Barranquilla, Atlántico, Colombia.
+          </p>
+
+          <p>
+            El proyecto se enfoca en la elaboración,
+            distribución y venta de repisas y estantes de madera.
+            También contempla aprovechar piezas de madera
+            reutilizable que estén en condiciones adecuadas.
+          </p>
+
+          <p>
+            <strong>Nuestro propósito:</strong>
+            ofrecer propuestas funcionales, atractivas y
+            adaptables a diferentes espacios.
+          </p>
+        </div>
+
+        <div>
+          <img
+            class="info-image"
+            src="imagenes/contacto-dorso.png"
+            alt="Información de MADERCREA, código QR y datos de contacto"
+            loading="lazy"
+          >
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INFORMACIÓN DE CONTACTO -->
+
+    <section class="contact" id="contacto">
+      <div class="container contact-grid">
+
+        <div>
+          <div class="eyebrow">Hablemos</div>
+
+          <h2>
+            ¿Te interesa uno de nuestros diseños?
+          </h2>
+
+          <p>
+            Contáctanos para consultar sobre el proyecto
+            y los modelos de referencia.
+          </p>
+
+          <div class="details">
+
+            <div class="detail">
+              <b>Teléfono / WhatsApp</b>
+              <span>+57 301 234 0987</span>
+            </div>
+
+            <div class="detail">
+              <b>Correo electrónico</b>
+              <span>
+                <a href="mailto:madercreas.a@gmail.com">
+                  madercreas.a@gmail.com
+                </a>
+              </span>
+            </div>
+
+            <div class="detail">
+              <b>Dirección</b>
+              <span>
+                CRA 15b #104-32, Barranquilla, Colombia
+              </span>
+            </div>
+
+            <div class="detail">
+              <b>Instagram</b>
+              <span>
+                <a
+                  href="https://www.instagram.com/madercreas.a/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  @madercreas.a
+                </a>
+              </span>
+            </div>
+
+          </div>
+
+          <p>
+            <a
+              class="btn"
+              href="https://wa.me/573012340987?text=Hola%2C%20MADERCREA.%20Quisiera%20informaci%C3%B3n%20sobre%20sus%20repisas%20y%20estantes."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Escribir por WhatsApp ↗
+            </a>
+          </p>
+        </div>
+
+        <div>
+          <img
+            class="contact-image"
+            src="imagenes/contacto-dorso.png"
+            alt="Tarjeta de contacto de MADERCREA"
+            loading="lazy"
+          >
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+
+  <footer>
+    <div class="container footer-inner">
+
+      <a class="brand" href="#inicio">
+        MADER<span>CREA</span>
+      </a>
+
+      <p>
+        Transformamos espacios, construimos ideas ·
+        Barranquilla, Colombia
+      </p>
+
+      <a href="#inicio">Volver arriba ↑</a>
+
+    </div>
+  </footer>
+
+  <!-- MENÚ PARA CELULARES -->
+
+  <script>
+    const menu = document.getElementById('menu');
+    const links = document.getElementById('links');
+
+    menu.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+
+      menu.setAttribute('aria-expanded', String(open));
+      menu.textContent = open ? '×' : '☰';
+    });
+
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        links.classList.remove('open');
+        menu.setAttribute('aria-expanded', 'false');
+        menu.textContent = '☰';
+      });
+    });
+  </script>
+
+</body>
+</html>
